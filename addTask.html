@@ -1,0 +1,77 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>TODO_LIST</title>
+</head>
+<body>
+    <section>
+        <nav>
+            <h1>TODO LIST</h1>
+            <ul>
+                <li><a href="login.html">HOME</a></li>
+                <li><a href="#">ADD TASKS</a></li>
+                <li><a href="doneTask.html">DONE TASKS</a></li>
+                <li><a href="#">ABOUT</a></li>
+            </ul>
+        </nav>
+    </section>
+    <section>
+        <div class="addContainer">
+            <h2>ADD TASK</h2>
+            <input type="text" id="task" placeholder="Enter the Task..........">
+            <br>
+            <button id="saveButton">SAVE</button>
+        </div>
+    </section>
+
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-analytics.js";
+        import { getDatabase, ref, set, child, update, remove } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js"
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyC_4PcC3xpcwu8Jb_dk1SaGeG4rPl6219s",
+          authDomain: "todolist-c39a1.firebaseapp.com",
+          projectId: "todolist-c39a1",
+          storageBucket: "todolist-c39a1.appspot.com",
+          messagingSenderId: "192774557172",
+          appId: "1:192774557172:web:960598e52181cc572bbda1",
+          measurementId: "G-YQ51QVW10J"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+
+        const db = getDatabase();
+
+
+        var task = document.getElementById('task');
+        var svBut = document.getElementById("saveButton");
+
+
+        function InsertData(){
+            set(ref(db, "Tasks/"+localStorage.getItem('uid')+"/"+task.value), {
+                Task: task.value
+            })
+            .then(() => {
+                task.value = "";
+                alert("Task Added Successfully");
+            })
+            .catch((e) => {
+                alert("Error Adding Task");
+            })
+        }
+
+        svBut.addEventListener('click', InsertData)
+      </script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>TODO_LIST</title>
+</head>
+<body>
+    <section>
+        <nav>
+            <h1>TODO LIST</h1>
+            <ul>
+                <li><a href="login.html">HOME</a></li>
+                <li><a href="addTask.html">ADD TASKS</a></li>
+                <li><a href="#">DONE TASKS</a></li>
+                <li><a href="#">ABOUT</a></li>
+            </ul>
+        </nav>
+    </section>
+
+    <section>
+        <div class="doneContainer">
+            <h2>Please Enter Your Done Tasks</h2>
+            <input type="text" id="delTask" placeholder="Enter the done task.........."><br>
+            <button id="delBut">MARK DONE</button>
+            <br><br>
+            <h2>Your List of Done Tasks: </h2>
+            <ul id="tasksDone">
+            </ul>
+        </div>
+    </section>
+
+
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-analytics.js";
+        import { getDatabase, ref, set, child, update, remove, onValue } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js"
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyC_4PcC3xpcwu8Jb_dk1SaGeG4rPl6219s",
+          authDomain: "todolist-c39a1.firebaseapp.com",
+          projectId: "todolist-c39a1",
+          storageBucket: "todolist-c39a1.appspot.com",
+          messagingSenderId: "192774557172",
+          appId: "1:192774557172:web:960598e52181cc572bbda1",
+          measurementId: "G-YQ51QVW10J"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+
+        const db = getDatabase();
+
+        var delTask = document.getElementById("delTask");
+        var delBut = document.getElementById("delBut");
+
+        var taskdone = document.getElementById("tasksDone");
+
+        function AddItemsToList(doneTaskValue){
+            let li = document.createElement("li");
+            let text = document.createTextNode(doneTaskValue);
+            li.appendChild(text);
+
+            taskdone.appendChild(li);
+        }
+
+
+        function addAllItemsToList(Tasks){
+            taskdone.innerHTML = "";
+            Tasks.forEach(element => {
+                AddItemsToList(element.Task);
+            });
+        }
+
+        function GetDataRealtime(){
+            const dbRef = ref(db, "DoneTasks/"+localStorage.getItem('uid'));
+
+            onValue(dbRef, (snapshot) => {
+                var Tasks = [];
+                snapshot.forEach(childSnapShot => {
+                    Tasks.push(childSnapShot.val());
+                });
+
+                addAllItemsToList(Tasks);
+            })
+        }
+
+        function InsertData(){
+            set(ref(db, "DoneTasks/"+localStorage.getItem('uid')+"/"+delTask.value), {
+                Task: delTask.value
+            })
+            .then(() => {
+                alert("Your task "+delTask.value+" is successfully marked done, Congratulations on completing the Task!");
+                delTask.value = "";
+            })
+            .catch((e) => {
+                alert("Error");
+            })
+        }
+
+        function deleteData(){
+            if(delTask.value != ""){
+                remove(ref(db, "Tasks/"+localStorage.getItem('uid')+"/"+delTask.value))
+                .then(() => {
+                    InsertData();
+                })
+                .catch((e) => {
+                    alert("Error Marking your task done, Please once check with the spelling");
+                })
+            } else{
+                alert("You haven't entered any Task Details!");
+            }
+        }
+
+        delBut.addEventListener('click', deleteData);
+
+        window.onload = GetDataRealtime;
+        
+
+      </script>
+</body>
+</html>

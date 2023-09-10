@@ -1,0 +1,111 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>TODO_LIST</title>
+</head>
+<body style="background-color:aqua;">
+    <section>
+        <nav>
+            <h1>TODO LIST</h1>
+            <ul>
+                <li><a href="#">HOME</a></li>
+                <li><a href="addTask.html">ADD TASKS</a></li>
+                <li><a href="doneTask.html">DONE TASKS</a></li>
+                <li><a href="#">ABOUT</a></li>
+            </ul>
+        </nav>
+    </section>
+
+
+    <section>
+        <div class="allContainer">
+            <h1 id="welcome"></h1>
+            <h2>Your Active Tasks Are: </h2>
+            <ul id="allTasks">
+                
+            </ul>
+        </div>
+    </section>
+
+
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-analytics.js";
+        import { getDatabase, ref, set, get, child, update, remove, onValue } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js"
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyC_4PcC3xpcwu8Jb_dk1SaGeG4rPl6219s",
+          authDomain: "todolist-c39a1.firebaseapp.com",
+          projectId: "todolist-c39a1",
+          storageBucket: "todolist-c39a1.appspot.com",
+          messagingSenderId: "192774557172",
+          appId: "1:192774557172:web:960598e52181cc572bbda1",
+          measurementId: "G-YQ51QVW10J"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+
+        const db = getDatabase();
+
+
+        var allTasks = document.getElementById("allTasks");
+
+        var welcome = document.getElementById('welcome');
+
+        const dbRef = ref(db);
+
+        get(child(dbRef, "Users/"+localStorage.getItem('uid'))).then((snapshot) => {
+            if(snapshot.exists()){
+                welcome.innerHTML = "Welcome to TodoList "+ snapshot.val().Username;
+            }
+        })
+        .catch((e)=>{
+            alert("Error");
+        })
+
+        function AddItemsToList(doneTaskValue){
+            let li = document.createElement("li");
+            let text = document.createTextNode(doneTaskValue);
+            li.appendChild(text);
+
+            allTasks.appendChild(li);
+        }
+
+
+        function addAllItemsToList(TaskValues){
+            allTasks.innerHTML = "";
+            TaskValues.forEach(element => {
+                AddItemsToList(element.Task);
+            });
+        }
+
+        function GetDataRealtime(){
+            const dbRef = ref(db, "Tasks/"+localStorage.getItem('uid'));
+
+            onValue(dbRef, (snapshot) => {
+                var TaskValues = [];
+                snapshot.forEach(childSnapShot => {
+                    TaskValues.push(childSnapShot.val());
+                });
+
+                addAllItemsToList(TaskValues);
+            })
+        }
+
+
+
+        window.onload = GetDataRealtime;
+        
+      </script>
+</body>
+</html>

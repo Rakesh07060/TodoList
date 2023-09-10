@@ -1,0 +1,374 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: aqua;
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+    background-color: burlywood;
+    box-shadow: 0 4px 2px 1px rgb(34, 34, 34);
+}
+
+nav h1{
+    font-size: 30px;
+}
+
+nav ul{
+    display: flex;
+}
+
+nav ul li{
+    margin: 10px 8px;
+    list-style: none;
+}
+
+nav ul li a{
+    text-decoration: none;
+}
+
+.addContainer{
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    margin-top: 100px;
+    padding: 150px;
+    margin-left: 200px;
+    margin-right: 200px;
+    border: 1px solid black;
+    background: rgb(243,0,108);
+    background: linear-gradient(90deg, rgba(243,0,108,1) 0%, rgba(13,193,230,1) 50%, rgba(48,209,66,1) 100%);
+    border-radius: 50px;
+    box-shadow: 8px 8px 2px 2px rgb(57, 57, 57);
+}
+
+.addContainer h2{
+    margin-bottom: 6px;
+}
+
+.addContainer input{
+    width: 50%;
+    padding: 6px;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    color: white;
+    background-color: black;
+    border: 1px solid white;
+    margin-bottom: 15px;
+    border-radius: 50px;
+}
+
+.addContainer button{
+    padding: 6px;
+    width: 120px;
+    border: none;
+    background-color: green;
+    color: white;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.addContainer button:hover{
+    background-color: rgb(13, 254, 13);
+    color: black;
+    width: 150px;
+}
+
+
+.doneContainer{
+    text-align: center;
+    margin-top: 120px;
+}
+
+.doneContainer h2{
+    margin-bottom: 20px;
+}
+
+.doneContainer input{
+    margin-bottom: 20px;
+    width: 30%;
+    padding: 8px;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid black;
+    font-size: 18px;
+    background-color: black;
+    color: white;
+}
+
+.doneContainer button{
+    padding: 12px;
+    font-weight: bolder;
+    background-color: red;
+    border: none;
+    border-radius: 120px;
+    color: yellow;
+    cursor: pointer;
+}
+
+
+.doneContainer ul li{
+    margin-top: 6px;
+    font-size: 22px;
+    color:crimson;
+    font-weight: bolder;
+}
+
+
+.allContainer{
+    text-align: center;
+    margin-top: 120px;
+}
+
+.allContainer h1{
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.allContainer h2{
+    margin-bottom: 20px;
+}
+
+.allContainer ul{
+    list-style: circle;
+}
+
+.allContainer ul li{
+    margin: 12px 0;
+    color: red;
+    font-weight: bolder;
+    font-size: 18px;
+}
+
+.allContainer ul li:hover{
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.logContainer{
+    margin-top: 10%;
+    margin-left: 40%;
+    margin-right: 40%;
+    padding: 40px;
+    border: 1px solid black;
+}
+
+.logContainer h1{
+    margin-bottom: 20px;
+    font-size: 40px;
+}
+
+
+.logContainer label{
+    font-weight: bolder;
+}
+
+.logContainer input{
+    width: 200px;
+    padding: 8px;
+    color: white;
+    background-color: black;
+    margin-top: 4px;
+    margin-bottom: 12px;
+}
+
+.logContainer button{
+    padding: 8px;
+    width: 200px;
+    margin-bottom: 10px;
+    background-color: rgb(2, 255, 15);
+    cursor: pointer;
+    font-weight: bolder;
+}
+
+.logContainer button:hover{
+    background-color: gray;
+    color: wheat;
+}
+
+.signContainer{
+    margin-top: -25%;
+    margin-left: 40%;
+    margin-right: 40%;
+    padding: 40px;
+    border: 1px solid black;
+}
+
+.signContainer h1{
+    margin-bottom: 20px;
+    font-size: 40px;
+}
+
+
+.signContainer label{
+    font-weight: bolder;
+}
+
+.signContainer input{
+    width: 200px;
+    padding: 8px;
+    color: white;
+    background-color: black;
+    margin-top: 4px;
+    margin-bottom: 12px;
+}
+
+.signContainer button{
+    padding: 8px;
+    width: 200px;
+    margin-bottom: 10px;
+    background-color: rgb(2, 255, 15);
+    cursor: pointer;
+    font-weight: bolder;
+}
+
+.signContainer button:hover{
+    background-color: gray;
+    color: wheat;
+}
+
+@media only screen and (max-width: 600px) {
+    .addContainer{
+        text-align: center;
+        margin-top: 100px;
+        width: 90px;
+        padding: 120px;
+        margin-left: 40px;
+        margin-right: 200px;
+        border: 1px solid black;
+        background: rgb(243,0,108);
+        background: linear-gradient(90deg, rgba(243,0,108,1) 0%, rgba(13,193,230,1) 50%, rgba(48,209,66,1) 100%);
+        border-radius: 50px;
+        box-shadow: 8px 8px 2px 2px rgb(57, 57, 57);
+    }
+    .addContainer h2{
+        margin-bottom: 16px;
+        margin-left: -100px;
+    }
+    
+    .addContainer input{
+        width: 230px;
+        padding: 6px;
+        margin-left: -70px;
+        border: none;
+        outline: none;
+        font-size: 18px;
+        color: white;
+        background-color: black;
+        border: 1px solid white;
+        margin-bottom: 18px;
+        border-radius: 50px;
+    }
+    .addContainer button{
+        padding: 6px;
+        width: 120px;
+        border: none;
+        background-color: green;
+        color: white;
+        font-weight: bold;
+        border-radius: 6px;
+        cursor: pointer;
+        margin-left: -100px;
+    }
+    .doneContainer input{
+        margin-bottom: 20px;
+        width: 70%;
+        padding: 8px;
+        outline: none;
+        border: none;
+        border-bottom: 2px solid black;
+        font-size: 18px;
+        background-color: black;
+        color: white;
+    }
+
+
+    .logContainer{
+        margin-top: 50%;
+        margin-left: 10%;
+        margin-right: 10%;
+        padding: 40px;
+        border: 1px solid black;
+    }
+    
+    .logContainer h1{
+        margin-bottom: 20px;
+        font-size: 40px;
+    }
+    
+    
+    .logContainer label{
+        font-weight: bolder;
+    }
+    
+    .logContainer input{
+        width: 200px;
+        padding: 8px;
+        color: white;
+        background-color: black;
+        margin-top: 4px;
+        margin-bottom: 12px;
+    }
+    
+    .logContainer button{
+        padding: 8px;
+        width: 200px;
+        margin-bottom: 10px;
+        background-color: rgb(2, 255, 15);
+        cursor: pointer;
+        font-weight: bolder;
+    }
+    
+    .logContainer button:hover{
+        background-color: gray;
+        color: wheat;
+    }
+    
+    .signContainer{
+        margin-top: -90%;
+        margin-left: 10%;
+        margin-right: 10%;
+        padding: 40px;
+        border: 1px solid black;
+    }
+    
+    .signContainer h1{
+        margin-bottom: 20px;
+        font-size: 40px;
+    }
+    
+    
+    .signContainer label{
+        font-weight: bolder;
+    }
+    
+    .signContainer input{
+        width: 200px;
+        padding: 8px;
+        color: white;
+        background-color: black;
+        margin-top: 4px;
+        margin-bottom: 12px;
+    }
+    
+    .signContainer button{
+        padding: 8px;
+        width: 200px;
+        margin-bottom: 10px;
+        background-color: rgb(2, 255, 15);
+        cursor: pointer;
+        font-weight: bolder;
+    }
+    
+    .signContainer button:hover{
+        background-color: gray;
+        color: wheat;
+    }
+}
